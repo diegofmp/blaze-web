@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import axios from 'axios';  
 
 //bootstrap stylesheets
 import 'bootstrap/dist/css/bootstrap.min.css';

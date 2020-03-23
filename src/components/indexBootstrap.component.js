@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';  
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import Pagination from 'react-bootstrap/Pagination'
+import Pagination from 'react-bootstrap/Pagination';
 
 export default class IndexBootstrap extends Component {
 
@@ -13,12 +13,13 @@ export default class IndexBootstrap extends Component {
             rowSelected : false,
             total: 0,
             currentPage: 1,
-            totalPages: 1
+            totalPages: 1,
+            pageSize: 10
         };
     }
 
     getCustomers(page) {
-        axios.get('http://localhost:8080/customers/?offset='+page)
+        axios.get('http://localhost:8080/customers/?offset='+page+'&limit='+this.state.pageSize)
           .then(result => {
               this.setState({
                   rowData: result.data.data,
@@ -66,6 +67,16 @@ export default class IndexBootstrap extends Component {
         this.getCustomers(page);
     }
 
+    handleChange = (event) => {
+        this.setState({...this.state, pageSize: event.target.value });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.pageSize != this.state.pageSize){
+            this.getCustomers(0);
+        }
+    }
+
     render() {
         return(
             <div
@@ -105,13 +116,32 @@ export default class IndexBootstrap extends Component {
                         })}
                     </tbody>
                 </Table>
-                <Pagination>
-                    <Pagination.First disabled={this.state.currentPage == 1} onClick={() => this.changePage(0)} />
-                    <Pagination.Prev disabled={this.state.currentPage == 1} onClick={() => this.changePage(2)}/>
-                    <Pagination.Item active>{this.state.currentPage}</Pagination.Item>
-                    <Pagination.Next disabled={this.state.totalPages == this.state.currentPage} onClick={() => this.changePage(1)}/>
-                    <Pagination.Last disabled={this.state.totalPages == this.state.currentPage} onClick={() => this.changePage(9)}/>
-                </Pagination>
+                <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                    <div>
+                        <select value={this.state.pageSize} onChange={this.handleChange}>
+                            <option value='10'>10</option>
+                            <option value='50'>50</option>
+                            <option value='100'>100</option>
+                            <option value='200'>200</option>
+                        </select>
+                    </div>
+                    <span>Page: {this.state.currentPage} / {this.state.totalPages}</span>
+                    <span>Total customers: {this.state.total}</span>
+                </div>
+                <div>
+                    
+                    <div>
+                        <Pagination>
+                            <Pagination.First disabled={this.state.currentPage === 1} onClick={() => this.changePage(0)} />
+                            <Pagination.Prev disabled={this.state.currentPage === 1} onClick={() => this.changePage(2)}/>
+                            <Pagination.Item active>{this.state.currentPage}</Pagination.Item>
+                            <Pagination.Next disabled={this.state.totalPages === this.state.currentPage} onClick={() => this.changePage(1)}/>
+                            <Pagination.Last disabled={this.state.totalPages === this.state.currentPage} onClick={() => this.changePage(9)}/>
+                        </Pagination>
+                    </div>
+                    
+                </div>
+                
             </div>
         )
     }
