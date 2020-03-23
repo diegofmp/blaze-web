@@ -69,7 +69,7 @@ class App extends React.Component{
           <Switch>
               <Route exact path='/create' component={ Create } />
               <Route path='/edit/:id' component={ Edit } />
-              <Route path='/index' component={ Index } />
+              <Route path='/' component={ Index } />
           </Switch>
         </div>
       </Router>

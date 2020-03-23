@@ -95,6 +95,7 @@ export default class Index extends Component {
                 onRowSelected={this.setSelectFlag}
                 onGridReady={ params => this.gridApi = params.api }
                 rowSelection="single"
+                pagination={true}
                 columnDefs={this.state.columnDefs}
                 rowData={this.state.rowData}>
                 </AgGridReact>
