@@ -19,7 +19,7 @@ export default class IndexBootstrap extends Component {
     }
 
     getCustomers(page) {
-        axios.get('http://localhost:8080/customers/?offset='+page+'&limit='+this.state.pageSize)
+        axios.get(process.env.REACT_APP_REST_API_LOCATION+'/customers/?offset='+page+'&limit='+this.state.pageSize)
           .then(result => {
               this.setState({
                   rowData: result.data.data,
@@ -34,7 +34,7 @@ export default class IndexBootstrap extends Component {
     }
 
     deleteCustomer(id){
-        axios.delete('http://localhost:8080/customers/'+id)
+        axios.delete(process.env.REACT_APP_REST_API_LOCATION+'/customers/'+id)
         .then(res =>{this.getCustomers(this.state.currentPage - 1);});
     }
 

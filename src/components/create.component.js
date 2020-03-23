@@ -46,7 +46,7 @@ export default class Create extends Component {
           email: this.state.email,
           phoneNumber: this.state.phoneNumber
         };
-        axios.post('http://localhost:8080/customers/', obj)
+        axios.post(process.env.REACT_APP_REST_API_LOCATION+'/customers/', obj)
             .then(res => {
                 this.setState({
                     firstName: '',

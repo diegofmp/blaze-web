@@ -29,7 +29,7 @@ export default class Index extends Component {
     }
 
     getCustomers() {
-        axios.get('http://localhost:8080/customers/allCustomers')
+        axios.get(process.env.REACT_APP_REST_API_LOCATION+'/customers/allCustomers')
           .then(result => result.data)
           .then(rowData => this.setState({rowData}))
     }
@@ -45,7 +45,7 @@ export default class Index extends Component {
         if(selectedData.length){
           //delete first
           let id = selectedData[0].id;
-          axios.delete('http://localhost:8080/customers/'+id)
+          axios.delete(process.env.REACT_APP_REST_API_LOCATION+'/customers/'+id)
             .then(res =>{this.getCustomers();});
         }        
     }

@@ -20,7 +20,7 @@ export default class Edit extends Component {
 
   componentDidMount() {
       //get customer
-      axios.get('http://localhost:8080/customers/'+this.props.match.params.id)
+      axios.get(process.env.REACT_APP_REST_API_LOCATION+'/customers/'+this.props.match.params.id)
           .then(response => {
               this.setState({ 
                 firstName: response.data.firstName, 
@@ -62,7 +62,7 @@ export default class Edit extends Component {
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
     };
-    axios.put('http://localhost:8080/customers/'+this.props.match.params.id, obj)
+    axios.put(process.env.REACT_APP_REST_API_LOCATION+'/customers/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
     //go to index
     this.props.history.push('/bootstrap');

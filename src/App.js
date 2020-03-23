@@ -17,6 +17,7 @@ import IndexBootstrap from './components/indexBootstrap.component';
 
 class App extends React.Component{
   constructor(props){
+    const name = "MY APP hehe";
     super(props);
   }
 
