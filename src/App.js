@@ -16,13 +16,11 @@ import Index from './components/index.component';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import CustomerService from './shared/customersService';
 import IndexBootstrap from './components/indexBootstrap.component';
 
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.customerService = new CustomerService();
   }
 
   render(){

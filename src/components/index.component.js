@@ -6,14 +6,12 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
-import CustomerService from '../shared/customersService';
 
 
 export default class Index extends Component {
 
     constructor(props){
         super(props);
-        this.customerService = new CustomerService();
         this.state = {
             columnDefs: [{
                 headerName: "Name", field: "firstName", checkboxSelection: true,sortable: true, filter: true
@@ -31,7 +29,7 @@ export default class Index extends Component {
     }
 
     getCustomers() {
-        axios.get('http://localhost:8080/customers')
+        axios.get('http://localhost:8080/customers/allCustomers')
           .then(result => result.data)
           .then(rowData => this.setState({rowData}))
     }
@@ -44,24 +42,20 @@ export default class Index extends Component {
         //e.preventDefault();
         const selectedNodes = this.gridApi.getSelectedNodes()
         const selectedData = selectedNodes.map( node => node.data )
-        console.log("SELECTED DATA: ", selectedData)
         if(selectedData.length){
           //delete first
           let id = selectedData[0].id;
-          console.log("GONNA DELETE: ", id)
           axios.delete('http://localhost:8080/customers/'+id)
-            .then(res =>{console.log(res.data); this.getCustomers();});
+            .then(res =>{this.getCustomers();});
         }        
     }
     editSelected = e => {
         //e.preventDefault();
         const selectedNodes = this.gridApi.getSelectedNodes()
         const selectedData = selectedNodes.map( node => node.data )
-        console.log("SELECTED DATA: ", selectedData)
         if(selectedData.length){
           //delete first
           let id = selectedData[0].id;
-          console.log("GONNA DELETE: ", id)
           this.props.history.push('/edit/'+id)
         }        
     }

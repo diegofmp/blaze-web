@@ -22,7 +22,6 @@ export default class Edit extends Component {
       //get customer
       axios.get('http://localhost:8080/customers/'+this.props.match.params.id)
           .then(response => {
-              console.log("RESPONSEEEEEEEEEEEEE:>>",response);
               this.setState({ 
                 firstName: response.data.firstName, 
                 lastName: response.data.lastName, 
@@ -115,6 +114,7 @@ export default class Edit extends Component {
                     <input type="submit" 
                       value="Update" 
                       className="btn btn-primary"/>
+                      <a style={{marginLeft: '10px'}} className="btn btn-secondary" href="/bootstrap">Cancel<span className="sr-only"></span></a>
                 </div>
             </form>
         </div>

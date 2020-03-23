@@ -4,14 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Pagination from 'react-bootstrap/Pagination'
 
-import CustomerService from '../shared/customersService';
-
-
 export default class IndexBootstrap extends Component {
 
     constructor(props){
         super(props);
-        this.customerService = new CustomerService();
         this.state = {
             rowData: [],
             rowSelected : false,
@@ -22,7 +18,7 @@ export default class IndexBootstrap extends Component {
     }
 
     getCustomers(page) {
-        axios.get('http://localhost:8080/items/?offset='+page)
+        axios.get('http://localhost:8080/customers/?offset='+page)
           .then(result => {
               this.setState({
                   rowData: result.data.data,

@@ -58,6 +58,10 @@ export default class Create extends Component {
             });
       }
 
+    goBack(){
+      this.props.history.push('/bootstrap');
+    }
+
     render() {
         return (
             <div style={{ marginTop: 10 }}>
@@ -102,6 +106,7 @@ export default class Create extends Component {
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Save" className="btn btn-primary"/>
+                        <a style={{marginLeft: '10px'}} className="btn btn-secondary" href="/bootstrap">Cancel<span className="sr-only"></span></a>
                     </div>
                 </form>
             </div>
