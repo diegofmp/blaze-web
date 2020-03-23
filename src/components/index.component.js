@@ -4,6 +4,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import axios from 'axios';  
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 
 import CustomerService from '../shared/customersService';
 
@@ -99,6 +100,11 @@ export default class Index extends Component {
                 columnDefs={this.state.columnDefs}
                 rowData={this.state.rowData}>
                 </AgGridReact>
+                <div style={{paddingTop: '20px'}}>
+                    <Alert variant='info'>
+                        *Pagination is performed on client-side                    
+                    </Alert>
+                </div>
             </div>
         )
     }

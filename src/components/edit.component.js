@@ -66,7 +66,7 @@ export default class Edit extends Component {
     axios.put('http://localhost:8080/customers/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
     //go to index
-    this.props.history.push('/index');
+    this.props.history.push('/bootstrap');
   }
  
   render() {
@@ -78,6 +78,7 @@ export default class Edit extends Component {
                     <label>First Name:  </label>
                     <input 
                       type="text" 
+                      required
                       className="form-control" 
                       value={this.state.firstName}
                       onChange={this.onChangeFirstName}
@@ -86,6 +87,7 @@ export default class Edit extends Component {
                 <div className="form-group">
                     <label>Last Name: </label>
                     <input type="text" 
+                      required
                       className="form-control"
                       value={this.state.lastName}
                       onChange={this.onChangeLastName}
@@ -94,6 +96,7 @@ export default class Edit extends Component {
                 <div className="form-group">
                     <label>Email: </label>
                     <input type="email" 
+                      required
                       className="form-control"
                       value={this.state.email}
                       onChange={this.onChangeEmail}
@@ -102,6 +105,7 @@ export default class Edit extends Component {
                 <div className="form-group">
                     <label>Phone: </label>
                     <input type="phone" 
+                      required
                       className="form-control"
                       value={this.state.phoneNumber}
                       onChange={this.onChangePhoneNumber}
