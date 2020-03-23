@@ -62,7 +62,7 @@ export default class IndexBootstrap extends Component {
                 page= page < this.state.totalPages? page+1 : page;
                 break;
             case 9:
-                page= this.state.totalPages;
+                page= this.state.totalPages - 1;
                 break;
             default:
                 break;
