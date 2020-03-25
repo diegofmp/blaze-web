@@ -63,9 +63,10 @@ export default class Edit extends Component {
       phoneNumber: this.state.phoneNumber,
     };
     axios.put(process.env.REACT_APP_REST_API_LOCATION+'/customers/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
-    //go to index
-    this.props.history.push('/bootstrap');
+        .then(res => {
+          console.log(res.data)
+          this.props.history.push('/bootstrap');//go to index
+        });
   }
  
   render() {
